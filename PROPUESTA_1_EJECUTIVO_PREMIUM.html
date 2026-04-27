@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Castillo | Consultor Internacional en IA Generativa y Negocios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #c4a962;
+            --text-light: #f8f9fa;
+            --text-dark: #2d2d2d;
+            --bg-light: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navegación Premium Responsive */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Contact Button */
+        .nav-cta {
+            padding: 0.8rem 1.5rem;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(196,169,98,0.3);
+        }
+
+        /* Hero Section Premium */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 0 5%;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(196,169,98,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--text-light);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: rgba(248, 249, 250, 0.85);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 2px solid var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(196,169,98,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            animation: fadeInUp 1s ease-out 0.8s backwards;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(196,169,98,0.2);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Clientes Slider */
+        .clients-section {
+            padding: 5rem 5%;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .clients-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .clients-slider {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            gap: 4rem;
+        }
+
+        .client-logo {
+            min-width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            padding: 1rem 2rem;
+            border: 1px solid #e0e0e0;
+            font-weight: 600;
+            color: #666;
+            font-size: 1.1rem;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Expertise Section con Gráfica */
+        .expertise {
+            padding: 8rem 5%;
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .expertise-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .chart-container {
+            position: relative;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .chart-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .pie-chart {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .expertise-card {
+            padding: 2rem;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--accent);
+            transition: height 0.4s ease;
+        }
+
+        .expertise-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .expertise-card:hover::before {
+            height: 100%;
+        }
+
+        .expertise-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), #d4b77a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .expertise-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+
+        .expertise-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Casos de Éxito */
+        .success-cases {
+            padding: 8rem 5%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text-light);
+        }
+
+        .cases-grid {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .case-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border: 1px solid rgba(196,169,98,0.3);
+            transition: all 0.4s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent);
+        }
+
+        .case-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .case-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .case-metrics {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(196,169,98,0.3);
+            border-bottom: 1px solid rgba(196,169,98,0.3);
+        }
+
+        .metric {
+            flex: 1;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* LinkedIn Integration */
+        .linkedin-section {
+            padding: 8rem 5%;
+            background: #f8f9fa;
+        }
+
+        .linkedin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .linkedin-embed {
+            background: white;
+            padding: 3rem;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .linkedin-badge {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #0077b5, #00a0dc);
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .linkedin-badge h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .linkedin-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .linkedin-stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-left: 3px solid #0077b5;
+        }
+
+        .linkedin-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0077b5;
+            margin-bottom: 0.3rem;
+        }
+
+        .linkedin-stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .linkedin-cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #0077b5;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+
+        .linkedin-cta:hover {
+            background: #005885;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,119,181,0.3);
+        }
+
+        /* Experience Timeline */
+        .experience {
+            padding: 8rem 5%;
+            background: white;
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-period {
+            grid-column: 1;
+            text-align: right;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border: 4px solid white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .timeline-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-period {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .period-text {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 5%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--text-light);
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(196,169,98,0.2);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(196,169,98,0.3);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(248,249,250,0.5);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            padding: 1.2rem 3rem;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(196,169,98,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--accent);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            .hero-content,
+            .expertise-container,
+            .linkedin-container,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-dot {
+                left: 0;
+            }
+
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-cta {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .navbar {
+                padding: 1rem 3%;
+            }
+
+            .logo-container {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <!-- Aquí irá tu logo logocc.png -->
+            <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#c4a962;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#d4b77a;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M100 10 L170 50 L170 130 L100 170 L30 130 L30 50 Z" fill="none" stroke="url(#goldGradient)" stroke-width="3"/>
+                <path d="M 80 60 Q 55 60 55 85 Q 55 110 80 110" fill="none" stroke="url(#goldGradient)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M 120 90 Q 145 90 145 115 Q 145 140 120 140" fill="none" stroke="url(#goldGradient)" stroke-width="8" stroke-linecap="round"/>
+                <line x1="80" y1="85" x2="120" y2="115" stroke="url(#goldGradient)" stroke-width="2" opacity="0.5"/>
+            </svg>
+            <span class="logo-text">CARLOS CASTILLO</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#clientes">Clientes</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#casos">Casos de Éxito</a></li>
+            <li><a href="#publicaciones">Libros</a></li>
+            <li><a href="#linkedin">LinkedIn</a></li>
+            <li><a href="#contacto" class="nav-cta">Consultoría</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="subtitle">Consultor Internacional</div>
+                <h1>Liderando la Transformación Global</h1>
+                <p>Especialista en IA Generativa, Inversión Extranjera y Expansión Internacional. Impulsando gobiernos y empresas hacia el futuro en LATAM y UAE.</p>
+                <div class="cta-buttons">
+                    <a href="#contacto" class="btn-primary">Iniciar Consulta</a>
+                    <a href="#expertise" class="btn-secondary">Conocer Más</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">26+</div>
+                    <div class="stat-label">Años Experiencia</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">73</div>
+                    <div class="stat-label">Países</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$400</div>
+                    <div class="stat-label">USD/Hora</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clientes Slider -->
+    <section class="clients-section" id="clientes">
+        <h2 class="clients-title">Confianza de Organizaciones Líderes</h2>
+        <div class="clients-slider">
+            <div class="client-logo">Universidad Anáhuac</div>
+            <div class="client-logo">ENECON Corporation</div>
+            <div class="client-logo">Embajada USA</div>
+            <div class="client-logo">Gobierno de China</div>
+            <div class="client-logo">Embajada México</div>
+            <div class="client-logo">Gobierno de Bahía</div>
+            <div class="client-logo">PRI</div>
+            <div class="client-logo">Fundación C.E.</div>
+            <!-- Duplicado para el efecto infinito -->
+            <div class="client-logo">Universidad Anáhuac</div>
+            <div class="client-logo">ENECON Corporation</div>
+            <div class="client-logo">Embajada USA</div>
+            <div class="client-logo">Gobierno de China</div>
+            <div class="client-logo">Embajada México</div>
+            <div class="client-logo">Gobierno de Bahía</div>
+            <div class="client-logo">PRI</div>
+            <div class="client-logo">Fundación C.E.</div>
+        </div>
+    </section>
+
+    <!-- Expertise Section con Gráfica -->
+    <section class="expertise" id="expertise">
+        <h2 class="section-title">Áreas de Expertise</h2>
+        <p class="section-subtitle">Soluciones estratégicas personalizadas que transforman visiones en realidades globales</p>
+        
+        <div class="expertise-container">
+            <div class="chart-container">
+                <h3 class="chart-title">Distribución de Servicios</h3>
+                <svg class="pie-chart" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="200" cy="200" r="150" fill="none" stroke="#c4a962" stroke-width="100" 
+                            stroke-dasharray="236 707" transform="rotate(-90 200 200)"/>
+                    <circle cx="200" cy="200" r="150" fill="none" stroke="#d4b77a" stroke-width="100" 
+                            stroke-dasharray="188 755" stroke-dashoffset="-236" transform="rotate(-90 200 200)"/>
+                    <circle cx="200" cy="200" r="150" fill="none" stroke="#1a1a2e" stroke-width="100" 
+                            stroke-dasharray="141 802" stroke-dashoffset="-424" transform="rotate(-90 200 200)"/>
+                    <circle cx="200" cy="200" r="150" fill="none" stroke="#16213e" stroke-width="100" 
+                            stroke-dasharray="94 849" stroke-dashoffset="-565" transform="rotate(-90 200 200)"/>
+                    <circle cx="200" cy="200" r="150" fill="none" stroke="#9aa0a6" stroke-width="100" 
+                            stroke-dasharray="47 896" stroke-dashoffset="-659" transform="rotate(-90 200 200)"/>
+                    <circle cx="200" cy="200" r="80" fill="white"/>
+                    <text x="200" y="190" text-anchor="middle" font-size="20" font-weight="600" fill="#1a1a2e">Servicios</text>
+                    <text x="200" y="215" text-anchor="middle" font-size="16" fill="#666">Integrados</text>
+                </svg>
+                <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                        <div style="width: 20px; height: 20px; background: #c4a962;"></div>
+                        <span>IA Generativa (25%)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                        <div style="width: 20px; height: 20px; background: #d4b77a;"></div>
+                        <span>Inversión Extranjera (20%)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                        <div style="width: 20px; height: 20px; background: #1a1a2e;"></div>
+                        <span>Expansión Internacional (15%)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                        <div style="width: 20px; height: 20px; background: #16213e;"></div>
+                        <span>Smart Cities (10%)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 20px; height: 20px; background: #9aa0a6;"></div>
+                        <span>Otros Servicios (30%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">🤖</div>
+                    <h3>IA Generativa en Gobierno</h3>
+                    <p>Implementación de soluciones de inteligencia artificial para modernizar la gestión pública y mejorar la toma de decisiones gubernamentales.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🌎</div>
+                    <h3>Inversión Extranjera</h3>
+                    <p>Estrategias especializadas para atraer y gestionar inversión internacional, con enfoque en mercados emergentes.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🏙️</div>
+                    <h3>Ciudades Inteligentes</h3>
+                    <p>Desarrollo e implementación de modelos de smart cities que integran tecnología y sostenibilidad.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">📈</div>
+                    <h3>Expansión Internacional</h3>
+                    <p>Planes estratégicos de crecimiento global en LATAM, Europa, África y UAE.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Casos de Éxito -->
+    <section class="success-cases" id="casos">
+        <h2 class="section-title">Casos de Éxito Destacados</h2>
+        <p class="section-subtitle">Resultados tangibles que transforman organizaciones</p>
+        
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="case-number">01</div>
+                <h3>Expansión ENECON Corporation</h3>
+                <p>Liderazgo en la expansión internacional más ambiciosa de la compañía, posicionándola como líder en LATAM.</p>
+                <div class="case-metrics">
+                    <div class="metric">
+                        <div class="metric-value">+70%</div>
+                        <div class="metric-label">Crecimiento</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">73</div>
+                        <div class="metric-label">Países</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">2 años</div>
+                        <div class="metric-label">Duración</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">Incremento de presencia de 43 a 73 países, con implementación de estrategias de marketing internacional y modelos de inteligencia comercial.</p>
+            </div>
+
+            <div class="case-card">
+                <div class="case-number">02</div>
+                <h3>Fundación Castillos de Esperanza</h3>
+                <p>Creación y desarrollo de fundación internacional con impacto social en comunidades vulnerables.</p>
+                <div class="case-metrics">
+                    <div class="metric">
+                        <div class="metric-value">11</div>
+                        <div class="metric-label">Años Activa</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">8+</div>
+                        <div class="metric-label">Países</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">1000s</div>
+                        <div class="metric-label">Beneficiarios</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">Organización con presencia continental enfocada en apoyo a comunidades marginadas y en extrema necesidad.</p>
+            </div>
+
+            <div class="case-card">
+                <div class="case-number">03</div>
+                <h3>Consultoría Internacional Multi-Gobierno</h3>
+                <p>Asesoría estratégica para embajadas y gobiernos en inversión extranjera y negocios internacionales.</p>
+                <div class="case-metrics">
+                    <div class="metric">
+                        <div class="metric-value">26+</div>
+                        <div class="metric-label">Años</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">5</div>
+                        <div class="metric-label">Gobiernos</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">Satisfacción</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">Trabajo continuo con embajadas de USA, México, China y gobiernos de Panamá y Brasil en estrategias de desarrollo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LinkedIn Integration -->
+    <section class="linkedin-section" id="linkedin">
+        <div class="linkedin-container">
+            <div>
+                <h2 class="section-title" style="text-align: left;">Conéctate en LinkedIn</h2>
+                <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Mantente actualizado con insights sobre IA, inversión extranjera y tendencias globales</p>
+                
+                <div class="linkedin-stats">
+                    <div class="linkedin-stat">
+                        <div class="linkedin-stat-number">3er</div>
+                        <div class="linkedin-stat-label">Nivel de Conexión</div>
+                    </div>
+                    <div class="linkedin-stat">
+                        <div class="linkedin-stat-number">500+</div>
+                        <div class="linkedin-stat-label">Conexiones</div>
+                    </div>
+                    <div class="linkedin-stat">
+                        <div class="linkedin-stat-number">26+</div>
+                        <div class="linkedin-stat-label">Años Experiencia</div>
+                    </div>
+                    <div class="linkedin-stat">
+                        <div class="linkedin-stat-number">Top</div>
+                        <div class="linkedin-stat-label">Voz en IA & Gobierno</div>
+                    </div>
+                </div>
+
+                <a href="https://www.linkedin.com/in/carlos-castillo-consultor/" target="_blank" class="linkedin-cta">
+                    Ver Perfil en LinkedIn →
+                </a>
+            </div>
+
+            <div class="linkedin-embed">
+                <div class="linkedin-badge">
+                    <h3>Carlos Castillo</h3>
+                    <p style="opacity: 0.9; margin-top: 0.5rem;">CEO | Innovative Future</p>
+                    <p style="font-size: 0.95rem; opacity: 0.8; margin-top: 1rem;">Consulting in Generative AI in Government, Foreign Investment, and International Expansion (LATAM & UAE)</p>
+                </div>
+
+                <div style="padding: 2rem;">
+                    <h4 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary);">Experiencia Destacada</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 1rem 0; border-bottom: 1px solid #e0e0e0;">
+                            <strong>CEO, Grupo Castillo</strong><br>
+                            <span style="color: #666; font-size: 0.9rem;">Universidad Anáhuac Querétaro</span><br>
+                            <span style="color: #0077b5; font-size: 0.85rem;">2019 - Presente</span>
+                        </li>
+                        <li style="padding: 1rem 0; border-bottom: 1px solid #e0e0e0;">
+                            <strong>Consultor Internacional</strong><br>
+                            <span style="color: #666; font-size: 0.9rem;">Carloscastillo.mx</span><br>
+                            <span style="color: #0077b5; font-size: 0.85rem;">2000 - Presente</span>
+                        </li>
+                        <li style="padding: 1rem 0;">
+                            <strong>Fundador</strong><br>
+                            <span style="color: #666; font-size: 0.9rem;">Fundación Castillos de Esperanza</span><br>
+                            <span style="color: #0077b5; font-size: 0.85rem;">2015 - Presente</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="experience" id="experiencia">
+        <h2 class="section-title">Trayectoria Profesional</h2>
+        <p class="section-subtitle">Más de dos décadas construyendo puentes entre gobiernos, empresas y el futuro</p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">
+                    <span class="period-text">2019 - Presente</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>CEO, Grupo Castillo</h3>
+                    <h4>Universidad Anáhuac Querétaro | Profesor</h4>
+                    <p>Liderando estrategias de gobiernos inteligentes, negocios internacionales y formación de alta dirección.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">
+                    <span class="period-text">2015 - Presente</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>Fundador</h3>
+                    <h4>Fundación Castillos de Esperanza</h4>
+                    <p>Organización con presencia en diversos países para el apoyo a comunidades marginadas.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">
+                    <span class="period-text">2009 - 2017</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>Director México & Presidente LATAM</h3>
+                    <h4>ENECON Corporation</h4>
+                    <p>Expansión de 43 a 73 países en 2 años. Implementación de modelos de expansión mundial.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">
+                    <span class="period-text">2000 - Presente</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>Consultor Internacional</h3>
+                    <h4>Carloscastillo.mx</h4>
+                    <p>26 años de consultoría en inversión extranjera, negocios internacionales y asesoría para embajadas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publicaciones -->
+    <section class="publications" id="publicaciones" style="padding: 8rem 5%; background: white;">
+        <h2 class="section-title">Publicaciones</h2>
+        <p class="section-subtitle">Contribuciones académicas que exploran la intersección entre tecnología, sociedad y gobernanza global</p>
+        
+        <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 4rem;">
+            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 3rem; border: 1px solid #e0e0e0; text-align: center; transition: all 0.4s; position: relative; overflow: hidden;">
+                <div style="font-size: 4rem; margin-bottom: 1.5rem;">📚</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem;">Proliferación de las Culturas</h3>
+                <p style="color: #666; margin-bottom: 2rem; line-height: 1.7;">Análisis profundo sobre la diversidad cultural en la era de la globalización y su impacto en la inversión extranjera.</p>
+                <a href="https://www.amazon.com.mx/Proliferaci%C3%B3n-las-Culturas-extranjera-gobernanza-ebook/dp/B09CS76BR6" target="_blank" style="display: inline-block; padding: 1rem 2rem; background: var(--accent); color: var(--primary); text-decoration: none; font-weight: 600; transition: all 0.3s;">
+                    Comprar en Amazon →
+                </a>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 3rem; border: 1px solid #e0e0e0; text-align: center; transition: all 0.4s;">
+                <div style="font-size: 4rem; margin-bottom: 1.5rem;">🔮</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem;">Towards the Future</h3>
+                <p style="color: #666; margin-bottom: 2rem; line-height: 1.7;">Visiones sobre sociedad y tecnología. Reflexiones sobre el impacto tecnológico en la evolución social contemporánea.</p>
+                <div style="padding: 1rem 2rem; background: #f8f9fa; color: #666; font-weight: 600;">
+                    Próximamente en Amazon
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 3rem; border: 1px solid #e0e0e0; text-align: center; transition: all 0.4s;">
+                <div style="font-size: 4rem; margin-bottom: 1.5rem;">💼</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem;">Los Efectos de la Inversión Extranjera</h3>
+                <p style="color: #666; margin-bottom: 2rem; line-height: 1.7;">Estudio especializado sobre FDI y marcos regulatorios internacionales en economías emergentes.</p>
+                <div style="padding: 1rem 2rem; background: #f8f9fa; color: #666; font-weight: 600;">
+                    Disponible en bibliotecas
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="contact-content">
+            <div>
+                <h2>Transformemos su Visión en Realidad Global</h2>
+                <p style="margin-bottom: 3rem;">Disponible para consultoría especializada desde $400 USD/hora</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Ubicación</strong><br>
+                            Monterrey, Nuevo León, México
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <strong>LinkedIn</strong><br>
+                            /in/carlos-castillo-consultor
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <strong>Website</strong><br>
+                            carloscastillo.mx
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Nombre Completo" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Corporativo" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Teléfono">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="¿En qué puedo ayudarle?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">ENVIAR CONSULTA</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/carlos-castillo-consultor" target="_blank" title="LinkedIn">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+            </a>
+            <a href="https://twitter.com/carloscastillo" target="_blank" title="Twitter/X">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+            <a href="mailto:contacto@carloscastillo.mx" title="Email">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/carloscastilloconsultor" target="_blank" title="Instagram">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+            <a href="https://www.facebook.com/carloscastilloconsultor" target="_blank" title="Facebook">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                </svg>
+            </a>
+            <a href="https://wa.me/528112345678" target="_blank" title="WhatsApp">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+            </a>
+        </div>
+        <p>&copy; 2026 Carlos Castillo. Consultor Internacional | Doctor en Gobierno y Gestión Pública</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Autor: "Proliferación de las Culturas" | "Los Efectos de la Inversión Extranjera y su Gobernanza"</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.6;">Monterrey, NL, México | carloscastillo.mx</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '1rem 5%';
+                navbar.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.padding = '1.5rem 5%';
+                navbar.style.boxShadow = '0 2px 30px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
+</body>
+</html>

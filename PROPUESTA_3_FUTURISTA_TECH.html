@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Castillo | Global Innovation Architect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cyber-blue: #00f3ff;
+            --cyber-purple: #bd00ff;
+            --cyber-pink: #ff006e;
+            --dark-bg: #0a0e1a;
+            --darker-bg: #050810;
+            --card-bg: #0f1420;
+            --text-primary: #e0e6ed;
+            --text-muted: #8892a6;
+            --accent-gold: #ffd700;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Animated Circuit Background */
+        .circuit-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image: 
+                repeating-linear-gradient(90deg, var(--cyber-blue) 0px, transparent 1px, transparent 50px),
+                repeating-linear-gradient(0deg, var(--cyber-blue) 0px, transparent 1px, transparent 50px);
+            background-size: 50px 50px;
+            animation: circuitMove 20s linear infinite;
+        }
+
+        @keyframes circuitMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Glowing orbs */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--cyber-blue);
+            top: -200px;
+            left: -200px;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--cyber-purple);
+            bottom: -250px;
+            right: -250px;
+            animation-delay: -7s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 100px) scale(0.9); }
+        }
+
+        /* Futuristic Navbar */
+        .nav-future {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(10, 14, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .nav-future::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-future.scrolled::before {
+            opacity: 1;
+        }
+
+        .nav-inner {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-tech {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-tech svg {
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--cyber-blue));
+        }
+
+        .logo-tech span {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-items a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .nav-items a::before {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: var(--cyber-blue);
+            border-radius: 50%;
+            top: 50%;
+            left: -15px;
+            transform: translateY(-50%) scale(0);
+            transition: transform 0.3s;
+            box-shadow: 0 0 10px var(--cyber-blue);
+        }
+
+        .nav-items a:hover::before {
+            transform: translateY(-50%) scale(1);
+        }
+
+        .nav-items a:hover {
+            color: var(--cyber-blue);
+            text-shadow: 0 0 10px var(--cyber-blue);
+        }
+
+        /* Hero Dashboard */
+        .hero-dashboard {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+        }
+
+        .dashboard-grid {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content-dash {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--cyber-blue);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--cyber-blue);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        .hero-title-tech {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            line-height: 1;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fff, var(--cyber-blue), var(--cyber-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc-tech {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .stats-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .mini-stat {
+            background: rgba(0, 243, 255, 0.05);
+            padding: 1.2rem;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mini-stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .mini-stat-val {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--cyber-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .mini-stat-lbl {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-tech {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn-cyber, .btn-ghost {
+            padding: 1.2rem 3rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-cyber {
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            color: var(--darker-bg);
+            border: none;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+        }
+
+        .btn-cyber::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-cyber:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn-cyber span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--cyber-blue);
+            border: 2px solid var(--cyber-blue);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Live Dashboard */
+        .live-dashboard {
+            background: var(--card-bg);
+            padding: 2rem;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 1s ease-out;
+        }
+
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .dash-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--cyber-blue);
+        }
+
+        .dash-time {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-family: 'Orbitron', monospace;
+        }
+
+        .metrics-panel {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(0, 243, 255, 0.03);
+            border-left: 3px solid var(--cyber-blue);
+        }
+
+        .metric-info h4 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-info .value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .metric-visual {
+            width: 80px;
+            height: 50px;
+        }
+
+        /* Clients Hologram */
+        .clients-holo {
+            padding: 6rem 5%;
+            background: var(--darker-bg);
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .holo-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cyber-blue);
+            margin-bottom: 3rem;
+        }
+
+        .holo-scroll {
+            display: flex;
+            gap: 3rem;
+            animation: scrollHolo 40s linear infinite;
+        }
+
+        .holo-item {
+            min-width: 220px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .holo-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 243, 255, 0.3), transparent 30%);
+            animation: rotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .holo-item:hover::before {
+            opacity: 1;
+        }
+
+        .holo-item:hover {
+            border-color: var(--cyber-blue);
+            color: var(--cyber-blue);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+        }
+
+        @keyframes scrollHolo {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Services Cards */
+        .services-tech {
+            padding: 8rem 5%;
+            background: var(--dark-bg);
+        }
+
+        .section-head-tech {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-mini-title {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cyber-blue);
+            margin-bottom: 1rem;
+        }
+
+        .section-big-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc-tech {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .services-tech-grid {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            padding: 3rem;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .tech-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyber-blue), var(--cyber-purple));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .tech-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyber-blue);
+            box-shadow: 0 20px 60px rgba(0, 243, 255, 0.2);
+        }
+
+        .tech-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 10px var(--cyber-blue));
+        }
+
+        .tech-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--cyber-blue);
+        }
+
+        .tech-card p {
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--cyber-blue);
+        }
+
+        /* Success Cases 3D */
+        .cases-3d {
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, var(--darker-bg), var(--dark-bg));
+        }
+
+        .cases-3d-grid {
+            max-width: 1800px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .case-3d {
+            background: var(--card-bg);
+            padding: 3rem;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.4s;
+        }
+
+        .case-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg) translateZ(20px);
+            border-color: var(--cyber-blue);
+            box-shadow: 0 30px 80px rgba(0, 243, 255, 0.3);
+        }
+
+        .case-num-3d {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 6rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--cyber-blue), transparent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .case-3d h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
+            color: var(--cyber-blue);
+        }
+
+        .case-metrics-3d {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .metric-3d {
+            text-align: center;
+        }
+
+        .metric-3d-val {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--cyber-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-3d-lbl {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* Books Section */
+        .books-vault {
+            padding: 8rem 5%;
+            background: var(--dark-bg);
+        }
+
+        .books-grid {
+            max-width: 1600px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .book-holo {
+            background: var(--card-bg);
+            padding: 3rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .book-holo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.1), transparent 30%);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .book-holo:hover::before {
+            opacity: 1;
+        }
+
+        .book-holo:hover {
+            transform: translateY(-15px) scale(1.03);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+        }
+
+        .book-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 15px var(--accent-gold));
+        }
+
+        .book-holo h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .book-holo p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .btn-amazon {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-gold), #ffa500);
+            color: var(--darker-bg);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-amazon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        /* LinkedIn Portal */
+        .linkedin-portal {
+            padding: 8rem 5%;
+            background: linear-gradient(135deg, rgba(0, 119, 181, 0.15), transparent);
+        }
+
+        .portal-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .linkedin-card-tech {
+            background: var(--card-bg);
+            padding: 3rem;
+            border: 1px solid rgba(0, 119, 181, 0.4);
+            box-shadow: 0 10px 50px rgba(0, 119, 181, 0.2);
+        }
+
+        .linkedin-banner {
+            background: linear-gradient(135deg, #0077b5, #00a0dc);
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .linkedin-banner h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .linkedin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .linkedin-stat-box {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 119, 181, 0.1);
+            border-left: 3px solid #0077b5;
+        }
+
+        .linkedin-stat-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0077b5;
+            margin-bottom: 0.3rem;
+        }
+
+        .btn-linkedin {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #0077b5;
+            color: white;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            margin-top: 2rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(0, 119, 181, 0.4);
+        }
+
+        .btn-linkedin:hover {
+            background: #005885;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 119, 181, 0.6);
+        }
+
+        /* Contact Terminal */
+        .contact-terminal {
+            padding: 8rem 5%;
+            background: var(--darker-bg);
+        }
+
+        .terminal-wrapper {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 4rem;
+        }
+
+        .contact-data {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .data-line {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(0, 243, 255, 0.05);
+            border-left: 3px solid var(--cyber-blue);
+        }
+
+        .data-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+        }
+
+        .terminal-form {
+            background: var(--card-bg);
+            padding: 3rem;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .term-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .term-dot.red { background: #ff5f56; }
+        .term-dot.yellow { background: #ffbd2e; }
+        .term-dot.green { background: #27c93f; }
+
+        .form-input {
+            width: 100%;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-cyber {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            color: var(--darker-bg);
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+        }
+
+        .submit-cyber:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.7);
+        }
+
+        /* Footer Tech */
+        .footer-tech {
+            background: var(--darker-bg);
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .footer-socials-tech {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-socials-tech a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 50%;
+            color: var(--cyber-blue);
+            transition: all 0.3s;
+        }
+
+        .footer-socials-tech a:hover {
+            background: var(--cyber-blue);
+            color: var(--darker-bg);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.5);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .dashboard-grid,
+            .portal-grid,
+            .terminal-wrapper,
+            .cases-3d-grid,
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title-tech {
+                font-size: 3rem;
+            }
+
+            .nav-items {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="circuit-bg"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <!-- Navbar -->
+    <nav class="nav-future" id="navFuture">
+        <div class="nav-inner">
+            <div class="logo-tech">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="cyberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00f3ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#bd00ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M100 10 L170 50 L170 130 L100 170 L30 130 L30 50 Z" fill="none" stroke="url(#cyberGrad)" stroke-width="3"/>
+                    <path d="M 80 60 Q 55 60 55 85 Q 55 110 80 110" fill="none" stroke="url(#cyberGrad)" stroke-width="8" stroke-linecap="round"/>
+                    <path d="M 120 90 Q 145 90 145 115 Q 145 140 120 140" fill="none" stroke="url(#cyberGrad)" stroke-width="8" stroke-linecap="round"/>
+                    <line x1="80" y1="85" x2="120" y2="115" stroke="url(#cyberGrad)" stroke-width="2" opacity="0.5"/>
+                </svg>
+                <span>C.CASTILLO</span>
+            </div>
+            <ul class="nav-items">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#casos">Casos</a></li>
+                <li><a href="#libros">Libros</a></li>
+                <li><a href="#linkedin">LinkedIn</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Dashboard -->
+    <section class="hero-dashboard" id="inicio">
+        <div class="dashboard-grid">
+            <div class="hero-content-dash">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Disponible para Consultoría</span>
+                </div>
+                <h1 class="hero-title-tech">GLOBAL INNOVATION ARCHITECT</h1>
+                <p class="hero-desc-tech">Transformando gobiernos y corporaciones con IA Generativa, Inversión Extranjera y Estrategias de Expansión Global en 73 países.</p>
+                
+                <div class="stats-mini-grid">
+                    <div class="mini-stat">
+                        <div class="mini-stat-val">26+</div>
+                        <div class="mini-stat-lbl">Años Expertise</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-val">73</div>
+                        <div class="mini-stat-lbl">Países</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-val">$400</div>
+                        <div class="mini-stat-lbl">USD/Hora</div>
+                    </div>
+                </div>
+
+                <div class="cta-tech">
+                    <a href="#contacto" class="btn-cyber"><span>Iniciar Proyecto</span></a>
+                    <a href="#servicios" class="btn-ghost">Explorar Servicios</a>
+                </div>
+            </div>
+
+            <div class="live-dashboard">
+                <div class="dash-header">
+                    <div class="dash-title">LIVE METRICS</div>
+                    <div class="dash-time" id="liveTime">00:00:00</div>
+                </div>
+                <div class="metrics-panel">
+                    <div class="metric-row">
+                        <div class="metric-info">
+                            <h4>Proyectos Activos</h4>
+                            <div class="value">12</div>
+                        </div>
+                        <svg class="metric-visual" viewBox="0 0 80 50">
+                            <polyline points="0,40 20,30 40,35 60,15 80,20" fill="none" stroke="#00f3ff" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-info">
+                            <h4>Expansión Global</h4>
+                            <div class="value">+70%</div>
+                        </div>
+                        <svg class="metric-visual" viewBox="0 0 80 50">
+                            <polyline points="0,45 20,38 40,30 60,22 80,10" fill="none" stroke="#bd00ff" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-info">
+                            <h4>Satisfacción Cliente</h4>
+                            <div class="value">100%</div>
+                        </div>
+                        <svg class="metric-visual" viewBox="0 0 80 50">
+                            <rect x="10" y="35" width="10" height="15" fill="#00f3ff" opacity="0.6"/>
+                            <rect x="30" y="25" width="10" height="25" fill="#00f3ff" opacity="0.8"/>
+                            <rect x="50" y="10" width="10" height="40" fill="#00f3ff"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Hologram -->
+    <section class="clients-holo">
+        <div class="holo-title">Confianza de Organizaciones Globales</div>
+        <div class="holo-scroll">
+            <div class="holo-item">Universidad Anáhuac</div>
+            <div class="holo-item">ENECON Corporation</div>
+            <div class="holo-item">Embajada USA</div>
+            <div class="holo-item">Gobierno de China</div>
+            <div class="holo-item">Embajada México</div>
+            <div class="holo-item">Gobierno Bahía</div>
+            <div class="holo-item">PRI</div>
+            <div class="holo-item">Fundación C.E.</div>
+            <div class="holo-item">Universidad Anáhuac</div>
+            <div class="holo-item">ENECON Corporation</div>
+            <div class="holo-item">Embajada USA</div>
+            <div class="holo-item">Gobierno de China</div>
+        </div>
+    </section>
+
+    <!-- Services Tech -->
+    <section class="services-tech" id="servicios">
+        <div class="section-head-tech">
+            <div class="section-mini-title">Expertise Avanzado</div>
+            <h2 class="section-big-title">Servicios Premium</h2>
+            <p class="section-desc-tech">Soluciones de próxima generación para gobiernos y empresas globales</p>
+        </div>
+
+        <div class="services-tech-grid">
+            <div class="tech-card">
+                <div class="tech-icon">🤖</div>
+                <h3>IA Generativa en Gobierno</h3>
+                <p>Implementación de soluciones AI de última generación para modernización gubernamental, automatización de procesos y toma de decisiones basada en datos en tiempo real.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">Smart Gov</span>
+                    <span class="tech-tag">Automation</span>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon">💎</div>
+                <h3>Inversión Extranjera</h3>
+                <p>Estrategias especializadas para captación de capital internacional, due diligence, estructuración de deals y gestión de relaciones con inversionistas globales.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">FDI Strategy</span>
+                    <span class="tech-tag">Deal Flow</span>
+                    <span class="tech-tag">Capital Markets</span>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon">🌐</div>
+                <h3>Expansión Internacional</h3>
+                <p>Desarrollo de mercados en LATAM, Europa, África y UAE. Networking C-Level y construcción de alianzas estratégicas transnacionales.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Market Entry</span>
+                    <span class="tech-tag">Global Growth</span>
+                    <span class="tech-tag">Partnerships</span>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon">🏙️</div>
+                <h3>Smart Cities</h3>
+                <p>Diseño e implementación de ciudades inteligentes integrando IoT, big data, sostenibilidad y movilidad urbana del futuro.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">IoT</span>
+                    <span class="tech-tag">Urban Tech</span>
+                    <span class="tech-tag">Sustainability</span>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon">📊</div>
+                <h3>Consultoría Política</h3>
+                <p>Asesoría en políticas públicas, psicología política, estrategias de comunicación y gestión de relaciones diplomáticas internacionales.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Public Policy</span>
+                    <span class="tech-tag">Political Strategy</span>
+                    <span class="tech-tag">Diplomacy</span>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon">🎯</div>
+                <h3>Project Management</h3>
+                <p>Dirección de proyectos complejos con metodologías ágiles, PMI frameworks y change management para transformación organizacional.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">PMI</span>
+                    <span class="tech-tag">Agile</span>
+                    <span class="tech-tag">Change Mgmt</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Cases 3D -->
+    <section class="cases-3d" id="casos">
+        <div class="section-head-tech">
+            <div class="section-mini-title">Resultados Comprobados</div>
+            <h2 class="section-big-title">Casos de Éxito</h2>
+            <p class="section-desc-tech">Transformación tangible en organizaciones de clase mundial</p>
+        </div>
+
+        <div class="cases-3d-grid">
+            <div class="case-3d">
+                <div class="case-num-3d">01</div>
+                <h3>Expansión ENECON</h3>
+                <p>Liderazgo en la expansión más ambiciosa de la corporación a nivel global</p>
+                <div class="case-metrics-3d">
+                    <div class="metric-3d">
+                        <div class="metric-3d-val">+70%</div>
+                        <div class="metric-3d-lbl">Crecimiento</div>
+                    </div>
+                    <div class="metric-3d">
+                        <div class="metric-3d-val">73</div>
+                        <div class="metric-3d-lbl">Países</div>
+                    </div>
+                    <div class="metric-3d">
+                        <div class="metric-3d-val">2</div>
+                        <div class="metric-3d-lbl">Años</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-muted);">De 43 a 73 países con implementación de marketing internacional y modelos de inteligencia comercial.</p>
+            </div>
+
+            <div class="case-3d">
+                <div class="case-num-3d">02</div>
+                <h3>Fundación Internacional</h3>
+                <p>Creación de organización de impacto social con alcance continental</p>
+                <div class="case-metrics-3d">
+                    <div class="metric-3d">
+                        <div class="metric-3d-val">11</div>
+                        <div class="metric-3d-lbl">Años</div>
+                    </div>
+                    <div class="metric-3d">
+                        <div class="metric-3d-val">8+</div>
+                        <div class="metric-3d-lbl">Países</div>
+                    </div>
+                    <div class="metric-3d">
+                        <div class="metric-3d-val">1000s</div>
+                        <div class="metric-3d-lbl">Vidas</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-muted);">Fundación Castillos de Esperanza transformando comunidades marginadas.</p>
+            </div>
+
+            <div class="case-3d">
+                <div class="case-num-3d">03</div>
+                <h3>Consultoría Multi-Gobierno</h3>
+                <p>Asesoría estratégica para embajadas y gobiernos internacionales</p>
+                <div class="case-metrics-3d">
+                    <div class="metric-3d">
+                        <div class="metric-3d-val">26+</div>
+                        <div class="metric-3d-lbl">Años</div>
+                    </div>
+                    <div class="metric-3d">
+                        <div class="metric-3d-val">5</div>
+                        <div class="metric-3d-lbl">Gobiernos</div>
+                    </div>
+                    <div class="metric-3d">
+                        <div class="metric-3d-val">100%</div>
+                        <div class="metric-3d-lbl">Éxito</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-muted);">Trabajo con USA, México, China, Panamá y Brasil en desarrollo estratégico.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Vault -->
+    <section class="books-vault" id="libros">
+        <div class="section-head-tech">
+            <div class="section-mini-title">Publicaciones</div>
+            <h2 class="section-big-title">Biblioteca Digital</h2>
+            <p class="section-desc-tech">Contribuciones académicas sobre tecnología, sociedad y gobernanza global</p>
+        </div>
+
+        <div class="books-grid">
+            <div class="book-holo">
+                <div class="book-icon">📚</div>
+                <h3>Proliferación de las Culturas</h3>
+                <p>Análisis profundo sobre diversidad cultural, globalización y su impacto en la inversión extranjera y gobernanza internacional.</p>
+                <a href="https://www.amazon.com.mx/Proliferaci%C3%B3n-las-Culturas-extranjera-gobernanza-ebook/dp/B09CS76BR6" target="_blank" class="btn-amazon">COMPRAR EN AMAZON →</a>
+            </div>
+
+            <div class="book-holo">
+                <div class="book-icon">🔮</div>
+                <h3>Towards the Future</h3>
+                <p>Visiones sobre sociedad y tecnología. Reflexiones sobre el impacto de la innovación en la evolución social contemporánea.</p>
+                <div style="padding: 1rem; background: rgba(0, 243, 255, 0.1); color: var(--text-muted); font-weight: 600; margin-top: 1rem;">Próximamente</div>
+            </div>
+
+            <div class="book-holo">
+                <div class="book-icon">💼</div>
+                <h3>Los Efectos de la Inversión Extranjera</h3>
+                <p>Estudio especializado sobre FDI, marcos regulatorios internacionales y su gobernanza en economías emergentes.</p>
+                <div style="padding: 1rem; background: rgba(0, 243, 255, 0.1); color: var(--text-muted); font-weight: 600; margin-top: 1rem;">Disponible en Bibliotecas</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LinkedIn Portal -->
+    <section class="linkedin-portal" id="linkedin">
+        <div class="portal-grid">
+            <div>
+                <div class="section-mini-title" style="text-align: left;">Networking Profesional</div>
+                <h2 class="section-big-title" style="text-align: left; margin-bottom: 1.5rem;">Conéctate en LinkedIn</h2>
+                <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 3rem;">Insights sobre IA, inversión extranjera y tendencias globales en tiempo real</p>
+                
+                <div class="linkedin-stats-grid">
+                    <div class="linkedin-stat-box">
+                        <div class="linkedin-stat-num">500+</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">Conexiones</div>
+                    </div>
+                    <div class="linkedin-stat-box">
+                        <div class="linkedin-stat-num">26+</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">Años Experiencia</div>
+                    </div>
+                    <div class="linkedin-stat-box">
+                        <div class="linkedin-stat-num">Top</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">Voz en IA & Gov</div>
+                    </div>
+                    <div class="linkedin-stat-box">
+                        <div class="linkedin-stat-num">73</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">Países Alcance</div>
+                    </div>
+                </div>
+
+                <a href="https://www.linkedin.com/in/carlos-castillo-consultor/" target="_blank" class="btn-linkedin">
+                    VER PERFIL COMPLETO →
+                </a>
+            </div>
+
+            <div class="linkedin-card-tech">
+                <div class="linkedin-banner">
+                    <h3>Carlos Castillo</h3>
+                    <p>CEO | Innovative Future</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.9;">Consulting in Generative AI, Foreign Investment & International Expansion</p>
+                </div>
+
+                <div style="padding: 2rem;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 1.5rem; font-family: 'Orbitron', sans-serif; color: var(--cyber-blue);">Experiencia Destacada</h4>
+                    <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0, 243, 255, 0.1);">
+                        <strong>CEO, Grupo Castillo</strong><br>
+                        <span style="color: var(--text-muted); font-size: 0.9rem;">Universidad Anáhuac Querétaro</span><br>
+                        <span style="color: #0077b5; font-size: 0.85rem;">2019 - Presente</span>
+                    </div>
+                    <div style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0, 243, 255, 0.1);">
+                        <strong>Consultor Internacional</strong><br>
+                        <span style="color: var(--text-muted); font-size: 0.9rem;">Carloscastillo.mx</span><br>
+                        <span style="color: #0077b5; font-size: 0.85rem;">2000 - Presente (26 años)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Terminal -->
+    <section class="contact-terminal" id="contacto">
+        <div class="section-head-tech">
+            <div class="section-mini-title">Iniciar Proyecto</div>
+            <h2 class="section-big-title">Transformación Global</h2>
+            <p class="section-desc-tech">Disponible desde $400 USD/hora</p>
+        </div>
+
+        <div class="terminal-wrapper">
+            <div class="contact-data">
+                <div class="data-line">
+                    <div class="data-icon">📍</div>
+                    <div>
+                        <strong style="display: block; margin-bottom: 0.3rem;">Ubicación</strong>
+                        <span style="color: var(--text-muted);">Monterrey, Nuevo León, México</span>
+                    </div>
+                </div>
+                <div class="data-line">
+                    <div class="data-icon">💼</div>
+                    <div>
+                        <strong style="display: block; margin-bottom: 0.3rem;">LinkedIn</strong>
+                        <span style="color: var(--text-muted);">/in/carlos-castillo-consultor</span>
+                    </div>
+                </div>
+                <div class="data-line">
+                    <div class="data-icon">🌐</div>
+                    <div>
+                        <strong style="display: block; margin-bottom: 0.3rem;">Website</strong>
+                        <span style="color: var(--text-muted);">carloscastillo.mx</span>
+                    </div>
+                </div>
+                <div class="data-line">
+                    <div class="data-icon">💰</div>
+                    <div>
+                        <strong style="display: block; margin-bottom: 0.3rem;">Tarifa</strong>
+                        <span style="color: var(--accent-gold);">Desde $400 USD/hora</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal-form">
+                <div class="terminal-header">
+                    <div class="term-dot red"></div>
+                    <div class="term-dot yellow"></div>
+                    <div class="term-dot green"></div>
+                    <span style="margin-left: 1rem; font-family: 'Orbitron', monospace; font-size: 0.85rem; color: var(--text-muted);">CONTACT_TERMINAL_v4.0</span>
+                </div>
+                <form>
+                    <input type="text" class="form-input" placeholder="Nombre Completo" required>
+                    <input type="email" class="form-input" placeholder="Email Corporativo" required>
+                    <input type="text" class="form-input" placeholder="Empresa / Organización">
+                    <textarea class="form-input form-textarea" placeholder="Describe tu proyecto o necesidad de consultoría"></textarea>
+                    <button type="submit" class="submit-cyber">INICIAR TRANSMISIÓN</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-tech">
+        <div class="footer-socials-tech">
+            <a href="https://linkedin.com/in/carlos-castillo-consultor" target="_blank" title="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+            </a>
+            <a href="https://twitter.com/carloscastillo" target="_blank" title="X/Twitter">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+            <a href="mailto:contacto@carloscastillo.mx" title="Email">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                </svg>
+            </a>
+            <a href="https://wa.me/528112345678" target="_blank" title="WhatsApp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+            </a>
+        </div>
+        <p>&copy; 2026 Carlos Castillo | Consultor Internacional</p>
+        <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">Doctor en Gobierno y Gestión Pública | Especialista en IA Generativa</p>
+        <p style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">Monterrey, NL, México | carloscastillo.mx</p>
+    </footer>
+
+    <script>
+        // Live Time
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
+            document.getElementById('liveTime').textContent = timeStr;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navFuture');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

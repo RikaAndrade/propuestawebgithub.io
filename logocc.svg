@@ -1,0 +1,34 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c4a962;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4b77a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexágono de fondo -->
+  <path d="M100 10 L170 50 L170 130 L100 170 L30 130 L30 50 Z" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="3"/>
+  
+  <!-- Primera C -->
+  <path d="M 80 60 Q 55 60 55 85 Q 55 110 80 110" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="8" 
+        stroke-linecap="round"/>
+  
+  <!-- Segunda C -->
+  <path d="M 120 90 Q 145 90 145 115 Q 145 140 120 140" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="8" 
+        stroke-linecap="round"/>
+  
+  <!-- Línea conectora decorativa -->
+  <line x1="80" y1="85" x2="120" y2="115" 
+        stroke="url(#goldGradient)" 
+        stroke-width="2" 
+        opacity="0.5"/>
+</svg>

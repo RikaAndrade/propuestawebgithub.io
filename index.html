@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Propuestas Web - Carlos Castillo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: #94a3b8;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 15px;
+      padding: 25px;
+      transition: 0.3s;
+      border: 1px solid #334155;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #38bdf8;
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
+    .card p {
+      color: #cbd5f5;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #38bdf8;
+      color: black;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: #0ea5e9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Propuestas de Rediseño Web</h1>
+  <p>Selecciona una propuesta para visualizarla</p>
+</header>
+
+<section class="container">
+
+  <div class="card">
+    <h2>Propuesta 1</h2>
+    <p>Diseño ejecutivo premium, enfocado en presencia corporativa.</p>
+    <a class="btn" href="PROPUESTA_1_EJECUTIVO_PREMIUM.html" target="_blank">
+      Ver propuesta
+    </a>
+  </div>
+
+  <div class="card">
+    <h2>Propuesta 2</h2>
+    <p>Portafolio creativo con enfoque visual moderno.</p>
+    <a class="btn" href="PROPUESTA_2_PREMIUM_MULTIMEDIA.html" target="_blank">
+      Ver propuesta
+    </a>
+  </div>
+
+  <div class="card">
+    <h2>Propuesta 3</h2>
+    <p>One Page App interactiva con estilo tecnológico.</p>
+    <a class="btn" href="PROPUESTA_3_FUTURISTA_TECH.html" target="_blank">
+      Ver propuesta
+    </a>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 - Presentación de propuestas web
+</footer>
+
+</body>
+</html>
