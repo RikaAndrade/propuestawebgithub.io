@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Propuestas Web - Carlos Castillo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    /* Stats Bar - Contador y Fecha */
+    .stats-bar {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      border-bottom: 2px solid #38bdf8;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .stat-icon {
+      font-size: 1.3rem;
+    }
+
+    .stat-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    /* Animación para el contador */
+    @keyframes countUp {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .stat-value.animated {
+      animation: countUp 0.5s ease-out;
+    }
+
+    /* Pulso en tiempo real para la fecha */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .live-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: #94a3b8;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 15px;
+      padding: 25px;
+      transition: 0.3s;
+      border: 1px solid #334155;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #38bdf8;
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #38bdf8;
+    }
+
+    .card p {
+      color: #cbd5f5;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #38bdf8;
+      color: black;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: #0ea5e9;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #64748b;
+      background: #1e293b;
+      border-top: 1px solid #334155;
+      margin-top: 40px;
+    }
+
+    .footer-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .footer-info span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .stats-bar {
+        flex-direction: column;
+        padding: 15px 20px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Barra de Estadísticas -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-icon">📅</span>
+    <div class="stat-content">
+      <span class="stat-label">Fecha y Hora</span>
+      <span class="stat-value" id="currentDateTime">
+        <span class="live-indicator"></span>
+        Cargando...
+      </span>
+    </div>
+  </div>
+
+  <div class="stat-item">
+    <span class="stat-icon">👥</span>
+    <div class="stat-content">
+      <span class="stat-label">Visitas Totales</span>
+      <span class="stat-value animated" id="visitCounter">0</span>
+    </div>
+  </div>
+
+  <div class="stat-item">
+    <span class="stat-icon">🌍</span>
+    <div class="stat-content">
+      <span class="stat-label">Última Visita</span>
+      <span class="stat-value" id="lastVisit">Primera vez</span>
+    </div>
+  </div>
+</div>
+
+<header>
+  <h1>Propuestas de Rediseño Web</h1>
+  <p>Selecciona una propuesta para visualizarla</p>
+</header>
+
+<section class="container">
+
+  <div class="card">
+    <h2>Propuesta 1: Ejecutivo Premium</h2>
+    <p>Diseño ejecutivo premium, enfocado en presencia corporativa tradicional con colores dorado y negro.</p>
+    <a class="btn" href="PROPUESTA_1_EJECUTIVO_PREMIUM.html" target="_blank">
+      Ver propuesta →
+    </a>
+  </div>
+
+  <div class="card">
+    <h2>Propuesta 2: Portfolio Creativo</h2>
+    <p>Portafolio creativo con enfoque visual moderno, layout tipo Bento Grid asimétrico.</p>
+    <a class="btn" href="PROPUESTA_2_PREMIUM_MULTIMEDIA.html" target="_blank">
+      Ver propuesta →
+    </a>
+  </div>
+
+  <div class="card">
+    <h2>Propuesta 3: One-Page App</h2>
+    <p>One Page App interactiva con estilo tecnológico, navegación sidebar y secciones full-screen.</p>
+    <a class="btn" href="PROPUESTA_3_FUTURISTA_TECH.html" target="_blank">
+      Ver propuesta →
+    </a>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-info">
+    <span>🎓 Carlos Castillo</span>
+    <span>💼 Consultor Internacional</span>
+    <span>🚀 Digital AI Strategist</span>
+  </div>
+  <p>© 2026 - Presentación de Propuestas Web</p>
+</footer>
+
+<script>
+  // ============ CONTADOR DE VISITAS ============
+  function initVisitCounter() {
+    // Obtener contador actual del localStorage
+    let visitCount = localStorage.getItem('visitCount');
+    
+    if (visitCount === null) {
+      // Primera visita
+      visitCount = 1;
+    } else {
+      // Incrementar visitas
+      visitCount = parseInt(visitCount) + 1;
+    }
+    
+    // Guardar nuevo contador
+    localStorage.setItem('visitCount', visitCount);
+    
+    // Mostrar en la página con animación
+    const counterElement = document.getElementById('visitCounter');
+    counterElement.textContent = visitCount;
+    counterElement.classList.add('animated');
+    
+    // Guardar fecha/hora de esta visita
+    const now = new Date();
+    localStorage.setItem('lastVisitDate', now.toISOString());
+    
+    // Mostrar última visita
+    updateLastVisit();
+  }
+
+  // ============ MOSTRAR ÚLTIMA VISITA ============
+  function updateLastVisit() {
+    const lastVisitISO = localStorage.getItem('lastVisitDate');
+    const lastVisitElement = document.getElementById('lastVisit');
+    
+    if (!lastVisitISO) {
+      lastVisitElement.textContent = 'Primera vez';
+      return;
+    }
+    
+    const lastVisit = new Date(lastVisitISO);
+    const now = new Date();
+    
+    // Calcular diferencia de tiempo
+    const diffMs = now - lastVisit;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+    
+    let timeAgo;
+    if (diffMins < 1) {
+      timeAgo = 'Hace un momento';
+    } else if (diffMins < 60) {
+      timeAgo = `Hace ${diffMins} min`;
+    } else if (diffHours < 24) {
+      timeAgo = `Hace ${diffHours} hrs`;
+    } else {
+      timeAgo = `Hace ${diffDays} días`;
+    }
+    
+    lastVisitElement.textContent = timeAgo;
+  }
+
+  // ============ FECHA Y HORA EN TIEMPO REAL ============
+  function updateDateTime() {
+    const now = new Date();
+    
+    // Opciones de formato en español
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    };
+    
+    const dateTimeString = now.toLocaleDateString('es-MX', options);
+    
+    // Capitalizar primera letra
+    const formatted = dateTimeString.charAt(0).toUpperCase() + dateTimeString.slice(1);
+    
+    document.getElementById('currentDateTime').innerHTML = 
+      '<span class="live-indicator"></span>' + formatted;
+  }
+
+  // ============ INICIALIZACIÓN ============
+  // Ejecutar al cargar la página
+  window.addEventListener('DOMContentLoaded', () => {
+    initVisitCounter();
+    updateDateTime();
+    
+    // Actualizar fecha/hora cada segundo
+    setInterval(updateDateTime, 1000);
+    
+    // Actualizar "última visita" cada minuto
+    setInterval(updateLastVisit, 60000);
+  });
+
+  // ============ RESET (OPCIONAL - PARA TESTING) ============
+  // Descomenta estas líneas si quieres resetear el contador durante desarrollo
+  // localStorage.removeItem('visitCount');
+  // localStorage.removeItem('lastVisitDate');
+</script>
+
+</body>
+</html>
